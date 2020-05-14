@@ -1,0 +1,41 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: yamllint
+    image: sdesbure/yamllint
+    commands:
+      - yamllint -d relaxed .drone.yml
+
+  - name: gofmt
+    depends_on:
+      - yamllint
+    image: golang:1.14
+    commands:
+      - go fmt
+
+  - name: gotest
+    depends_on:
+      - gofmt
+    image: golang:1.14
+    commands:
+      - go test
+
+  - name: build
+    depends_on:
+      - gotest
+    image: golang:1.14
+    environment:
+      CGO_ENABLED: "0"
+    commands:
+      - go build -o chitchat
+
+  - name: run
+    depends_on:
+      - build
+    image: alpine:3.9.6
+    commands:
+      - ./chitchat
+
