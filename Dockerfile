@@ -12,11 +12,13 @@ RUN go build -o chitchat && cp ./chitchat /chitchat
 
 FROM alpine:3.9.6
 
-COPY --from=builder /chitchat /chitchat
+COPY --from=builder /chitchat /var/run/chitchat
 
-COPY ./config.json /config.json
+COPY ./config.json /var/run/config.json
 
 EXPOSE 8080
 
-ENTRYPOINT ["/chitchat"]
+WORKDIR /var/run
+
+ENTRYPOINT ["./chitchat"]
 
