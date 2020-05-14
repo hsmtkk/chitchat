@@ -17,10 +17,11 @@ COPY --from=builder /chitchat /var/run/chitchat
 COPY ./config.json /var/run/config.json
 COPY ./public /var/run/public
 COPY ./templates /var/run/templates
+COPY ./docker/webapp/entrypoint.sh /var/run/entrypoint.sh
 
 EXPOSE 8080
 
 WORKDIR /var/run
 
-ENTRYPOINT ["./chitchat"]
+ENTRYPOINT ["./entrypoint.sh"]
 
