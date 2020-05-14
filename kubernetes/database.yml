@@ -17,6 +17,7 @@ spec:
       containers:
         - name: database
           image: hsmtkk/chitchat:database
+          imagePullPolicy: Always
           ports:
             - containerPort: 5432
 

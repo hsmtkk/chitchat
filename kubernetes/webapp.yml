@@ -17,6 +17,7 @@ spec:
       containers:
         - name: webapp
           image: hsmtkk/chitchat:webapp
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
 
