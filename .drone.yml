@@ -35,8 +35,10 @@ steps:
   - name: run
     depends_on:
       - build
-    image: curlimages/curl:7.70.0
+    image: ubuntu:20.04
     commands:
+      - apt -y update
+      - apt -y install curl
       - cp ./chitchat /var/run/chitchat
       - cd /var/run
       - ./chitchat &
