@@ -35,7 +35,19 @@ steps:
   - name: run
     depends_on:
       - build
-    image: alpine:3.9.6
+    image: curlimages/curl:7.70.0
     commands:
-      - ./chitchat
+      - ./chitchat &
+      - curl -v http://127.0.0.1:8080
+
+  - name: dockerhub
+    depends_on:
+      - yamllint
+    image: plugins/docker
+    settings:
+      repo: hsmtkk/chitchat
+      username: hsmtkk
+      password:
+        from_secret: docker_hub_token
+      auto_tag: true
 
