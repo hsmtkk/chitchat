@@ -15,6 +15,8 @@ FROM alpine:3.9.6
 COPY --from=builder /chitchat /var/run/chitchat
 
 COPY ./config.json /var/run/config.json
+COPY ./public /var/run/public
+COPY ./templates /var/run/templates
 
 EXPOSE 8080
 
