@@ -37,6 +37,8 @@ steps:
       - build
     image: curlimages/curl:7.70.0
     commands:
+      - cp ./chitchat /var/run/chitchat
+      - cd /var/run
       - ./chitchat &
       - curl -v http://127.0.0.1:8080
 
