@@ -54,7 +54,7 @@ steps:
       username: hsmtkk
       password:
         from_secret: docker_hub_token
-      dockerfile: ./docker/webapp/Dockerfile
+      dockerfile: docker/webapp/Dockerfile
       tags:
         - webapp
 
@@ -67,6 +67,6 @@ steps:
       username: hsmtkk
       password:
         from_secret: docker_hub_token
-      dockerfile: ./docker/database/Dockerfile
+      dockerfile: docker/database/Dockerfile
       tags:
         - database
