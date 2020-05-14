@@ -1,3 +1,3 @@
 #!/bin/sh
-docker build --tag hsmtkk/chitchat .
+DOCKER_BUILDKIT=1 docker build --tag hsmtkk/chitchat .
 

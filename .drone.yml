@@ -44,8 +44,6 @@ steps:
     depends_on:
       - yamllint
     image: plugins/docker
-    environment:
-      DOCKER_BUILDKIT: "1"
     settings:
       repo: hsmtkk/chitchat
       username: hsmtkk
