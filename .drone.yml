@@ -45,7 +45,7 @@ steps:
       - ./chitchat &
       - curl -v http://127.0.0.1:8080
 
-  - name: dockerhub
+  - name: dockerhub_webapp
     depends_on:
       - yamllint
     image: plugins/docker
@@ -54,5 +54,19 @@ steps:
       username: hsmtkk
       password:
         from_secret: docker_hub_token
-      auto_tag: true
+      dockerfile: ./docker/webapp/Dockerfile
+      tags:
+        - webapp
 
+  - name: dockerhub_database
+    depends_on:
+      - yamllint
+    image: plugins/docker
+    settings:
+      repo: hsmtkk/chitchat
+      username: hsmtkk
+      password:
+        from_secret: docker_hub_token
+      dockerfile: ./docker/database/Dockerfile
+      tags:
+        - database
